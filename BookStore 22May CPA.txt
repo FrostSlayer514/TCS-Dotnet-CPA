@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+namespace Solution
+{
+    class BookStore
+    {
+        public string bookname;
+        public int noofcopies;
+        public int price;
+        public bool isFiction;
+        public BookStore(string bookname,int noofcopies,int price,bool isFiction)
+        {
+            this.bookname=bookname;
+            this.noofcopies=noofcopies;
+            this.price=price;
+            this.isFiction=isFiction;
+        }
+    }
+    class Management
+    {
+        public static void Main()
+        {
+            int n=Convert.ToInt32(Console.ReadLine());
+            List<BookStore> book=new List<BookStore>();
+            for(int i=0;i<n;i++)
+            {
+                string bookname=Console.ReadLine();
+                int noofcopies=Convert.ToInt32(Console.ReadLine());
+                int price=Convert.ToInt32(Console.ReadLine());
+                bool isFiction=Convert.ToBoolean(Console.ReadLine());
+                BookStore bs=new BookStore(bookname,noofcopies,price,isFiction);
+                book.Add(bs);
+            }
+            string in_bookname=Console.ReadLine();
+            int count=1;
+            foreach(BookStore bh in book)
+            {
+                if(bh.bookname.ToLower().Equals(in_bookname.ToLower()))
+                {
+                    count++;
+                    Console.WriteLine("{0},{1},{2}",bh.bookname,bh.noofcopies,bh.price);
+                }
+            }
+            if(count==1)
+            {
+                Console.WriteLine("No book available");
+            }
+        }
+    }
+}
