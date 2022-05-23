@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+namespace Solution
+{
+    class Hotel:IComparable<Hotel>
+    {
+        public string name{get; set;}
+        public int id{get; set;}
+        public string place{get; set;}
+        public int noofroom{get; set;}
+        public bool isAvailable{get; set;}
+        public int CompareTo(Hotel obj)
+        {
+            return noofroom.CompareTo(obj.noofroom);
+        }
+        public Hotel(string name,int id,string place,int noofroom,bool isAvailable)
+        {
+            this.name=name;
+            this.id=id;
+            this.place=place;
+            this.noofroom=noofroom;
+            this.isAvailable=isAvailable;
+        }
+    }
+    class Management
+    {
+        public static void Main()
+        {
+            int n=Convert.ToInt32(Console.ReadLine());
+            List<Hotel> hot=new List<Hotel>();
+            for(int i=0;i<n;i++)
+            {
+                string name=Console.ReadLine();
+                int id=Convert.ToInt32(Console.ReadLine());
+                string place=Console.ReadLine();
+                int noofroom=Convert.ToInt32(Console.ReadLine());
+                bool isAvailable=Convert.ToBoolean(Console.ReadLine());
+                Hotel hp=new Hotel(name,id,place,noofroom,isAvailable);
+                hot.Add(hp);
+            }
+            string in_place=Console.ReadLine();
+            int count=0;
+            List<Hotel> hot2=new List<Hotel>();
+            foreach(Hotel hs in hot)
+            {
+                if(in_place.ToLower().Equals(hs.place.ToLower()))
+                {
+                    count++;
+                    hot2.Add(hs);
+                }
+            }
+            hot2.Sort();
+            if(count==0)
+            {
+               Console.WriteLine("No hotel is available");
+            }
+            else
+            {
+                Console.WriteLine("{0}-{1}-{2}-{3}",hot2[count-1].name,hot2[count-1].place,hot2[count-1].noofroom,hot2[count-1].isAvailable);
+                
+            }
+        }
+    }
+}
